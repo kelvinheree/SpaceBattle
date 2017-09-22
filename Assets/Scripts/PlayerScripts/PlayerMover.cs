@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour {
 
-	float forwardSpeed = 10f;
-	float sideSpeed = 5f;
-    float horizontalRotateSpeed = 1.0f;
-    float verticalRotateSpeed = 1.0f;
+	public float forwardSpeed = 10f;
+	public float sideSpeed = 5f;
+    public float horizontalRotateSpeed = 1.0f;
+	public float verticalRotateSpeed = 1.0f;
+	public float brakeSpeed=5f;
+	public float boostSpeed = 10f;
     Rigidbody rb;
+
+	Vector3 pos;
+	Vector3 lastPos;
+	Vector3 veloSub=Vector3.zero;
+	Vector3 relaVelo;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -23,6 +31,12 @@ public class PlayerMover : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
+
+		pos = transform.position;
+		veloSub = pos - lastPos;
+		lastPos = pos;
+		relaVelo = rb.velocity - veloSub;
+
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.forward * forwardSpeed);
@@ -31,6 +45,14 @@ public class PlayerMover : MonoBehaviour {
         {
             rb.AddForce(transform.forward * -forwardSpeed);
         }
+		if (Input.GetKey ("space")) {
+			Vector3 rev = -relaVelo;
+			rb.AddForce (rev*brakeSpeed);
+
+		}
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			rb.AddForce (transform.forward * boostSpeed);
+		}
         
         
         /*
