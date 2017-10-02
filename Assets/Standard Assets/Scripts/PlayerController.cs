@@ -6,6 +6,8 @@ public class PlayerController : NetworkBehaviour
 
     // public var myCam : Camera;
     // public var myAudioListener : AudioListener;
+    public Camera myCam;
+    public AudioListener myAudioListener;
 
     void Update()
     {
@@ -28,13 +30,13 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
           //Client code
-          // if (myCam.enabled == false){
-          //     myCam.enabled = true;
-          // }
-          //
-          // if (myAudioListener.enabled == false){
-          //     myAudioListener.enabled = true;
-          // }
+          if (myCam.enabled == false){
+              myCam.enabled = true;
+          }
+
+          if (myAudioListener.enabled == false){
+              myAudioListener.enabled = true;
+          }
         GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 }
