@@ -12,8 +12,8 @@ public class PlayerMotor : MonoBehaviour {
 	private Vector3 rotation = Vector3.zero;
     private Vector3 thrusterForce = Vector3.zero;
 
-    private float cameraRotationX = 0f;
-    private float currentCameraRotationX = 0f;
+    private float vertical = 0f;
+    private float horizontal = 0f;
 
 
 
@@ -30,18 +30,15 @@ public class PlayerMotor : MonoBehaviour {
 	}
 
     //Gets a rotate vector
-	public void Rotate(Vector3 _rotation){
-		rotation = _rotation;
+	public void Rotate(float _v, float _h){
+		vertical = _v;
+		horizontal = _h;
 	}
 
-    //Gets a vector for rotating camera
-	public void RotateCamera(float _cameraRotationX){
-		cameraRotationX = _cameraRotationX;
-	}
 
     //Gets the thrusterForce vector
     public void ApplyThruster(Vector3 _thrusterForce){
-        thrusterForce = _thrusterForce; 
+        thrusterForce = _thrusterForce;
     }
 
 	// Run every physics iteration
@@ -61,16 +58,7 @@ public class PlayerMotor : MonoBehaviour {
 	}
 
 	void PerformRotation(){
-		rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-		if (cam != null){
-
-            //set rotation and clamp
-            currentCameraRotationX -= cameraRotationX;
-            currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
-
-            //apply rotation to the transform of camera
-            cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
-		}
+		transform.Rotate(-vertical, horizontal, 0);
 	}
 
 

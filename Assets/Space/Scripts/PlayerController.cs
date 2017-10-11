@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerMotor motor;
 
+	public float horizontalRotateSpeed = 2.0f;
+	public float verticalRotateSpeed = 2.0f;
+
 	void Start(){
 		motor = GetComponent<PlayerMotor>();
 	}
@@ -30,28 +33,16 @@ public class PlayerController : MonoBehaviour {
 		//apply movement
 		motor.Move(_velocity);
 
-		//calc rotation as a 3D vector (turning around)
-		float _yRot = Input.GetAxisRaw("Mouse X");
-
-		Vector3 _rotation = new Vector3(0f, _yRot, 0f) * lookSensitivity;
-
-		//apply rotation
-		motor.Rotate(_rotation);
-
-		//calc camera rotation as a 3D vector (turning around)
-		float _xRot = Input.GetAxisRaw("Mouse Y");
-
-		float _cameraRotationX = _xRot * lookSensitivity;
-
-		//apply rotation
-		motor.RotateCamera(_cameraRotationX);
+		float h = horizontalRotateSpeed * Input.GetAxis("Mouse X");
+    float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
+		motor.Rotate(v,h);
 
         //thruster force calculation
         Vector3 _thrusterForce = Vector3.zero;
         //apply thruster force
         if (Input.GetButton("Jump")){
             _thrusterForce = Vector3.up * thrusterForce;
-        } 
+        }
         if (Input.GetButton("Fire2")){
             _thrusterForce = Vector3.down * thrusterForce;
         }
