@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
 	private float speed = 5f;
 	[SerializeField]
 	private float lookSensitivity = 3f;
+    [SerializeField]
+    private float thrusterForce = 1000f;
 
 	private PlayerMotor motor;
 
@@ -43,5 +45,17 @@ public class PlayerController : MonoBehaviour {
 
 		//apply rotation
 		motor.RotateCamera(_cameraRotation);
+
+        //thruster force calculation
+        Vector3 _thrusterForce = Vector3.zero;
+        //apply thruster force
+        if (Input.GetButton("Jump")){
+            _thrusterForce = Vector3.up * thrusterForce;
+        } 
+        if (Input.GetButton("Fire2")){
+            _thrusterForce = Vector3.down * thrusterForce;
+        }
+
+        motor.ApplyThruster(_thrusterForce);
 	}
 }
