@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4807424757309198}
   - component: {fileID: 33403706589258708}
   - component: {fileID: 23263045478638226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PM-40_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4613744560919050}
   - component: {fileID: 33485098992356940}
   - component: {fileID: 23116263321878396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 33216861409841436}
   - component: {fileID: 135605918117306598}
   - component: {fileID: 23575065619961732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4846213218842958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4356465020174120}
   - component: {fileID: 33359369739582594}
   - component: {fileID: 23739517139926716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PM-40_Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4123546046372852}
   - component: {fileID: 33799892026428536}
   - component: {fileID: 23539157619146556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PM-40_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 124581241052856626}
   - component: {fileID: 92626129426158286}
   - component: {fileID: 81347838126582208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 114405496878158402}
   - component: {fileID: 114809355541278452}
   - component: {fileID: 114927936897943822}
-  m_Layer: 0
+  - component: {fileID: 114541715965566484}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +165,7 @@ GameObject:
   - component: {fileID: 4327443845858112}
   - component: {fileID: 33843118707390142}
   - component: {fileID: 23215420568835300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PM-40_Receiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +180,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4571131327871010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,6 +655,27 @@ MonoBehaviour:
   - {fileID: 114247739185001798}
   - {fileID: 20946037883486884}
   - {fileID: 81347838126582208}
+  - {fileID: 114541715965566484}
+  remoteLayerName: RemotePlayer
+--- !u!114 &114541715965566484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399670617886386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1a424fcac4c6e4582ca14a0a725891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 20946037883486884}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  weapon:
+    name: Glock
+    damage: 10
+    range: 200
 --- !u!114 &114809355541278452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20946037883486884}
+  cameraRotationLimit: 85
 --- !u!114 &114927936897943822
 MonoBehaviour:
   m_ObjectHideFlags: 1
