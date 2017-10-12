@@ -745,14 +745,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1a424fcac4c6e4582ca14a0a725891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon:
+    name: Glock
+    damage: 10
+    range: 30000000
   cam: {fileID: 20791583432752908}
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
-  weapon:
-    name: Glock
-    damage: 10
-    range: 200
 --- !u!114 &114859754665269762
 MonoBehaviour:
   m_ObjectHideFlags: 1
