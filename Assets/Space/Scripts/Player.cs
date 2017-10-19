@@ -18,9 +18,30 @@ public class Player : NetworkBehaviour
     [SyncVar]
     private int currentHealth;
 
-    void Awake()
+    [SerializeField]
+    private Behaviour[] disableOnDeath;
+    private bool[] wasEnabled;
+
+
+    public void Setup()
     {
+        wasEnabled = new bool[disableOnDeath.Length];
+        for (int i = 0; i < wasEnabled.Length; i++)
+        {
+            wasEnabled[i] = disableOnDeath[i].enabled;
+        }
         SetDefaults();
+    }
+
+    //For Testing Purposes
+    private void Update()
+    {
+        if (!isLocalPlayer)
+            return;
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            RpcTakeDamage(5000);
+        }
     }
 
     [ClientRpc]
@@ -44,12 +65,35 @@ public class Player : NetworkBehaviour
     {
         isDead = true;
         //DISABLE COMPONENTS
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = false;
+        }
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+        {
+            _col.enabled = false;
+        }
 
+        Debug.Log(transform.name + " is DEAD!");
+
+        //CALL RESPAWN
     }
 
     public void SetDefaults()
     {
+        isDead = false;
         currentHealth = maxHealth;
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = wasEnabled[i];
+        }
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+        {
+            _col.enabled = true;
+        }
     }
 
 }
