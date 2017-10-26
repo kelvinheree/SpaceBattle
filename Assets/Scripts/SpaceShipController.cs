@@ -11,6 +11,7 @@ public class SpaceShipController : MonoBehaviour
     public float verticalRotateSpeed = 1.0f;
     public float brakeSpeed = 5f;
     public float boostSpeed = 10f;
+	public float shipRotateSpeed = 1f;
     Rigidbody rb;
 
     Vector3 pos;
@@ -29,6 +30,16 @@ public class SpaceShipController : MonoBehaviour
         float h = horizontalRotateSpeed * Input.GetAxis("Mouse X");
         float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
         transform.Rotate(-v, h, 0);
+
+		if (Input.GetKey(KeyCode.D))
+		{
+			transform.Rotate (0f, 0f, -shipRotateSpeed);
+		}
+
+		if (Input.GetKey(KeyCode.A))
+		{
+			transform.Rotate (0f, 0f, shipRotateSpeed);
+		}
     }
 
     // Update is called once per frame
@@ -44,10 +55,13 @@ public class SpaceShipController : MonoBehaviour
         {
             rb.AddForce(transform.forward * forwardSpeed);
         }
+
         if (Input.GetKey(KeyCode.S))
         {
             rb.AddForce(transform.forward * -forwardSpeed);
         }
+			
+
         if (Input.GetKey("space"))
         {
             Vector3 rev = -relaVelo;
