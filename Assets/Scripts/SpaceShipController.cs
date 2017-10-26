@@ -67,4 +67,13 @@ public class SpaceShipController : MonoBehaviour
 		rb.AddForce (move);
         */
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "BlackHole")
+        {
+            Vector3 destination = new Vector3(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
+            rb.transform.position = destination;
+        }
+    }
 }
