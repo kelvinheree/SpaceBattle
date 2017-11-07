@@ -1,2 +1,0 @@
-# SpaceBattleRoyale
-Cancer

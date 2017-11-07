@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplayerFPS", "MultiplayerFPS.csproj", "{7A43467E-7C34-A048-C6C1-C01DD9CDDA87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplayerFPS.Plugins", "MultiplayerFPS.Plugins.csproj", "{F964B250-5F15-313B-EFC5-5017E9B681A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplayerFPS.Editor", "MultiplayerFPS.Editor.csproj", "{5615F690-F260-6F83-00EA-C93DEE8BD653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A43467E-7C34-A048-C6C1-C01DD9CDDA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A43467E-7C34-A048-C6C1-C01DD9CDDA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A43467E-7C34-A048-C6C1-C01DD9CDDA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A43467E-7C34-A048-C6C1-C01DD9CDDA87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F964B250-5F15-313B-EFC5-5017E9B681A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F964B250-5F15-313B-EFC5-5017E9B681A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F964B250-5F15-313B-EFC5-5017E9B681A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F964B250-5F15-313B-EFC5-5017E9B681A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5615F690-F260-6F83-00EA-C93DEE8BD653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5615F690-F260-6F83-00EA-C93DEE8BD653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5615F690-F260-6F83-00EA-C93DEE8BD653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5615F690-F260-6F83-00EA-C93DEE8BD653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Wormhole
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,9 +15,9 @@ TagManager:
   - 
   - LocalPlayer
   - RemotePlayer
-  - 
-  - 
-  - 
+  - DontDraw
+  - Weapon
+  - CollidableEnvironment
   - 
   - 
   - 
