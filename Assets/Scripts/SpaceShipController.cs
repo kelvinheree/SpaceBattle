@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpaceShipController : MonoBehaviour
 {
-
+	public GameObject bulletSpawn;
+	public GameObject bullet;
     public float forwardSpeed = 10f;
     public float sideSpeed = 5f;
     public float horizontalRotateSpeed = 1.0f;
@@ -19,17 +20,40 @@ public class SpaceShipController : MonoBehaviour
     Vector3 veloSub = Vector3.zero;
     Vector3 relaVelo;
 
+
+
     // Use this for initialization
     void Start()
     {
+		
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        float h = horizontalRotateSpeed * Input.GetAxis("Mouse X");
-        float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
-        transform.Rotate(-v, h, 0);
+
+		if (!Input.GetKey (KeyCode.LeftControl)) {
+			float h = horizontalRotateSpeed * Input.GetAxis("Mouse X");
+			float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
+
+			if (h > 0) {
+				h = horizontalRotateSpeed;
+			} if (h < 0) {
+				h = -horizontalRotateSpeed;
+			} 
+
+			if (v > 0) {
+				v = horizontalRotateSpeed;
+			} if (v < 0) {
+				v = -horizontalRotateSpeed;
+			} 
+
+			transform.Rotate(-v, h, 0);
+			Debug.Log (h);
+		}
+//        float h = horizontalRotateSpeed * Input.GetAxis("Mouse X");
+//        float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
+//        transform.Rotate(-v, h, 0);
 
 		if (Input.GetKey(KeyCode.D))
 		{
@@ -39,6 +63,10 @@ public class SpaceShipController : MonoBehaviour
 		if (Input.GetKey(KeyCode.A))
 		{
 			transform.Rotate (0f, 0f, shipRotateSpeed);
+		}
+
+		if(Input.GetMouseButtonDown(0)){
+			Instantiate (bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
 		}
     }
 
