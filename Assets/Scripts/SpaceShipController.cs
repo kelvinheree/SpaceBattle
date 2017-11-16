@@ -12,6 +12,9 @@ public class SpaceShipController : MonoBehaviour
     public float brakeSpeed = 5f;
     public float boostSpeed = 10f;
 	public float shipRotateSpeed = 1f;
+    public float missileSpeed = 5000f;
+    public bool missiles = false;
+    public GameObject Missile;
     Rigidbody rb;
 
     Vector3 pos;
@@ -40,6 +43,12 @@ public class SpaceShipController : MonoBehaviour
 		{
 			transform.Rotate (0f, 0f, shipRotateSpeed);
 		}
+
+        if (Input.GetMouseButtonDown(1) && missiles)
+        {
+            GameObject Missiles = Instantiate(Missile, transform.position, transform.rotation) as GameObject;
+            Missiles.GetComponent<Rigidbody>().AddForce(transform.forward * missileSpeed);
+        }
     }
 
     // Update is called once per frame
@@ -88,6 +97,12 @@ public class SpaceShipController : MonoBehaviour
         {
             Vector3 destination = new Vector3(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
             rb.transform.position = destination;
+        }
+
+        if (collider.tag == "Missile")
+        {
+            missiles = true;
+            Destroy(collider.gameObject);
         }
     }
 }
