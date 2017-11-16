@@ -333,8 +333,6 @@ MonoBehaviour:
   environmentMask:
     serializedVersion: 2
     m_Bits: 4096
-  jointSpring: 20
-  jointMaxForce: 40
 --- !u!114 &11450446
 MonoBehaviour:
   m_ObjectHideFlags: 1
