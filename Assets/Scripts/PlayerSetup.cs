@@ -13,15 +13,18 @@ public class PlayerSetup : NetworkBehaviour {
 	[SerializeField]
 	Behaviour[] componentsToDisable;
 
+    [SerializeField]
+    string localLayerName = "LocalPlayer";
 	[SerializeField]
 	string remoteLayerName = "RemotePlayer";
-
 	[SerializeField]
 	string dontDrawLayerName = "DontDraw";
 	[SerializeField]
 	GameObject playerGraphics;
+    [SerializeField]
+    GameObject cockpit;
 
-	[SerializeField]
+    [SerializeField]
 	GameObject playerUIPrefab;
 	[HideInInspector]
 	public GameObject playerUIInstance;
@@ -39,9 +42,11 @@ public class PlayerSetup : NetworkBehaviour {
 		{
 			// Disable player graphics for local player
 			SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+            //enable cockpit
+            SetLayerRecursively(cockpit, LayerMask.NameToLayer(localLayerName));
 
-			// Create PlayerUI
-			playerUIInstance = Instantiate(playerUIPrefab);
+            // Create PlayerUI
+            playerUIInstance = Instantiate(playerUIPrefab);
 			playerUIInstance.name = playerUIPrefab.name;
 
 			// Configure PlayerUI
