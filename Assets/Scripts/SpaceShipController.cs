@@ -47,8 +47,8 @@ public class SpaceShipController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && missiles)
         {
-            GameObject Missiles = Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation) as GameObject;
-            //Missiles.GetComponent<Rigidbody>().AddForce(transform.forward * missileSpeed);
+            Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation);
+            //Debug.Log("stuff");
         }
     }
 
