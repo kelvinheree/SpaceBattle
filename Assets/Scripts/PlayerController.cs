@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
     private float shipRotateSpeed = 1f;
 
 
-
 	[SerializeField]
 	private float thrusterForce = 1000f;
 
@@ -66,14 +65,20 @@ public class PlayerController : MonoBehaviour {
         motor.Move(_velocity);
 
         //calc rotation as a 3D vector (turning around)
-        float _yRot = Input.GetAxisRaw("Horizontal");
-        float _xRot = Input.GetAxisRaw("Vertical");
+        float _yRot = Input.GetAxisRaw("Mouse X");
+        float _xRot = Input.GetAxisRaw("Mouse Y");
 
         Vector3 _rotation = new Vector3(-_xRot, _yRot, 0f) * lookSensitivity;
 
         //apply rotation
-        motor.Rotate(_rotation);
-
+        if (Input.GetButton("Fire3"))
+        {
+            
+        }
+        else
+        {
+            motor.Rotate(_rotation);
+        }
         if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(0f, 0f, -shipRotateSpeed);
@@ -86,7 +91,7 @@ public class PlayerController : MonoBehaviour {
 
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-		if (Input.GetButton ("Jump") && thrusterFuelAmount > 0f)
+		if (Input.GetButton ("Fire2") && thrusterFuelAmount > 0f)
 		{
 			thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
 
