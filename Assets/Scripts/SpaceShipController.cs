@@ -11,10 +11,11 @@ public class SpaceShipController : MonoBehaviour
     public float verticalRotateSpeed = 1.0f;
     public float brakeSpeed = 5f;
     public float boostSpeed = 10f;
-	public float shipRotateSpeed = 1f;
+    public float shipRotateSpeed = 1f;
     public float missileSpeed = 5000f;
     public bool missiles = false;
     public GameObject Missile;
+    public GameObject ShotSpawn;
     Rigidbody rb;
 
     Vector3 pos;
@@ -34,20 +35,20 @@ public class SpaceShipController : MonoBehaviour
         float v = verticalRotateSpeed * Input.GetAxis("Mouse Y");
         transform.Rotate(-v, h, 0);
 
-		if (Input.GetKey(KeyCode.D))
-		{
-			transform.Rotate (0f, 0f, -shipRotateSpeed);
-		}
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0f, 0f, -shipRotateSpeed);
+        }
 
-		if (Input.GetKey(KeyCode.A))
-		{
-			transform.Rotate (0f, 0f, shipRotateSpeed);
-		}
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0f, 0f, shipRotateSpeed);
+        }
 
         if (Input.GetMouseButtonDown(1) && missiles)
         {
-            GameObject Missiles = Instantiate(Missile, transform.position, transform.rotation) as GameObject;
-            Missiles.GetComponent<Rigidbody>().AddForce(transform.forward * missileSpeed);
+            GameObject Missiles = Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation) as GameObject;
+            //Missiles.GetComponent<Rigidbody>().AddForce(transform.forward * missileSpeed);
         }
     }
 
@@ -69,7 +70,7 @@ public class SpaceShipController : MonoBehaviour
         {
             rb.AddForce(transform.forward * -forwardSpeed);
         }
-			
+
 
         if (Input.GetKey("space"))
         {
