@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour {
         string _playerID = PLAYER_ID_PREFIX + _netID;
         players.Add(_playerID, _player);
         _player.transform.name = _playerID;
+        _player.transform.GetChild(2).name = _playerID;
+
     }
 
     public static void UnRegisterPlayer (string _playerID)
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour {
     {
         return players[_playerID];
     }
+
 
 	//void OnGUI ()
 	//{

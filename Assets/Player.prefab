@@ -97,12 +97,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.178556, y: 10.565842, z: -16.573528}
+  m_LocalPosition: {x: 8.115322, y: 8.353366, z: 2.775752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731655696941054}
   - {fileID: 465354}
-  - {fileID: 4662631045195170}
+  - {fileID: 4631604934526982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
   - {fileID: 11433214}
   - {fileID: 11433114}
   disableGameObjectsOnDeath:
-  - {fileID: 1147794086847282}
+  - {fileID: 1127797248345300}
   - {fileID: 123372}
   deathEffect: {fileID: 126342, guid: 403bbd3bfa289ac4f8dcaa985edb435f, type: 2}
   spawnEffect: {fileID: 136626, guid: 87678fa6253314f42a2cdfa7613c5674, type: 2}
@@ -414,7 +414,7 @@ MonoBehaviour:
   localLayerName: LocalPlayer
   remoteLayerName: RemotePlayer
   dontDrawLayerName: DontDraw
-  playerGraphics: {fileID: 1147794086847282}
+  playerGraphics: {fileID: 1127797248345300}
   cockpit: {fileID: 1102129944451310}
   playerUIPrefab: {fileID: 167956, guid: b135717c33bc8f64e8f5fc0953c22a7c, type: 2}
   playerUIInstance: {fileID: 0}
@@ -447,7 +447,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 11.178556, y: 10.565842, z: -16.573528}
+  m_ConnectedAnchor: {x: 8.115322, y: 8.353366, z: 2.775752}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -793,7 +793,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1127797248345300
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 95163935375599766}
   - component: {fileID: 64675579181050066}
   m_Layer: 9
-  m_Name: Luminaris Starship
+  m_Name: Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,21 +823,6 @@ GameObject:
   m_Layer: 10
   m_Name: Glass
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1147794086847282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4662631045195170}
-  m_Layer: 0
-  m_Name: Graphics
-  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1230,8 +1215,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127797248345300}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4010854400198348}
@@ -1240,8 +1225,8 @@ Transform:
   - {fileID: 4262448965809270}
   - {fileID: 4525698534345738}
   - {fileID: 4642673008340596}
-  m_Father: {fileID: 4662631045195170}
-  m_RootOrder: 0
+  m_Father: {fileID: 454064}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4642673008340596
 Transform:
@@ -1255,20 +1240,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4631604934526982}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4662631045195170
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1147794086847282}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4631604934526982}
-  m_Father: {fileID: 454064}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4690815836168176
 Transform:
