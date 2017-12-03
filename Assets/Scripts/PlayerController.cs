@@ -45,12 +45,13 @@ public class PlayerController : MonoBehaviour {
         //This makes the physics act right when it comes to
         //applying gravity when flying over objects
         //RaycastHit _hit;
-        //if (Physics.Raycast (transform.position, Vector3.down, out _hit, 100f, environmentMask))
+        //if (Physics.Raycast(transform.position, Vector3.down, out _hit, 100f, environmentMask))
         //{
-        //	joint.targetPosition = new Vector3(0f, -_hit.point.y, 0f);
-        //} else
+        //    joint.targetPosition = new Vector3(0f, -_hit.point.y, 0f);
+        //}
+        //else
         //{
-        //	joint.targetPosition = new Vector3(0f, 0f, 0f);
+        //    joint.targetPosition = new Vector3(0f, 0f, 0f);
         //}
 
         //calc forward velocity
@@ -71,14 +72,19 @@ public class PlayerController : MonoBehaviour {
         Vector3 _rotation = new Vector3(-_xRot, _yRot, 0f) * lookSensitivity;
 
         //apply rotation
-        if (Input.GetButton("Fire3"))
-        {
-            
-        }
-        else
-        {
-            motor.Rotate(_rotation);
-        }
+
+        motor.Rotate(_rotation);
+
+        //if (Input.GetButton("Fire3"))
+        //{
+
+        //}
+        //else
+        //{
+        //    motor.Rotate(_rotation);
+        //}
+
+
         if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(0f, 0f, -shipRotateSpeed);

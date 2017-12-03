@@ -24,6 +24,7 @@ public class PlayerMotor : MonoBehaviour {
 	public void Move (Vector3 _velocity)
 	{
 		velocity = _velocity;
+        
 	}
 
 	// Gets a rotational vector
@@ -60,6 +61,7 @@ public class PlayerMotor : MonoBehaviour {
 
     void PerformRotation()
     {
+        //transform.Rotate(rotation);
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
     }
 
