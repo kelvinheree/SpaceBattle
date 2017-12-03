@@ -66,7 +66,7 @@ Material:
     - _DstBlend: 0
     - _Float1: 2
     - _Float2: 3
-    - _Fresnel: 200
+    - _Fresnel: 5
     - _FresnelIntensity: 61
     - _FresnelWidth: 2
     - _GlossMapScale: 1
