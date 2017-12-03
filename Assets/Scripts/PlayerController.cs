@@ -28,13 +28,20 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private LayerMask environmentMask;
 
-	// Component caching
+    // Component caching
+    private Rigidbody rb;
 	private PlayerMotor motor;
 
-	void Start ()
+    //Missle Variables
+    public bool missiles = false;
+    public GameObject Missile;
+    public GameObject ShotSpawn;
+
+    void Start ()
 	{
 		motor = GetComponent<PlayerMotor>();
-	}
+        rb = GetComponent<Rigidbody>();
+    }
 
 	void Update ()
 	{
@@ -115,5 +122,26 @@ public class PlayerController : MonoBehaviour {
 		// Apply the thruster force
 		motor.ApplyThruster(_thrusterForce);
 
-	}
+        //fires missles if the player has them
+        if (Input.GetMouseButtonDown(1) && missiles)
+        {
+            Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation);
+        }
+
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Wormhole")
+        {
+            Vector3 destination = new Vector3(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
+            rb.transform.position = destination;
+        }
+
+        if (collider.tag == "Missile")
+        {
+            missiles = true;
+            Destroy(collider.gameObject);
+        }
+    }
 }
