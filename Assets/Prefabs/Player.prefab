@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.115322, y: 8.2, z: 2.3}
+  m_LocalPosition: {x: 8.115322, y: 8.353366, z: 2.775752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731655696941054}
@@ -249,7 +249,7 @@ MonoBehaviour:
   - {fileID: 11433214}
   - {fileID: 11433114}
   disableGameObjectsOnDeath:
-  - {fileID: 0}
+  - {fileID: 1846033807659124}
   - {fileID: 123372}
   deathEffect: {fileID: 126342, guid: 403bbd3bfa289ac4f8dcaa985edb435f, type: 2}
   spawnEffect: {fileID: 136626, guid: 87678fa6253314f42a2cdfa7613c5674, type: 2}
@@ -729,8 +729,8 @@ GameObject:
   - component: {fileID: 33769345998478106}
   - component: {fileID: 23717127808273014}
   m_Layer: 9
-  m_Name: Cube.001
-  m_TagString: Untagged
+  m_Name: Glass
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 136713950639724860}
   m_Layer: 9
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,8 +841,8 @@ GameObject:
   - component: {fileID: 33181262127761776}
   - component: {fileID: 23183866010087332}
   m_Layer: 9
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Ship Body
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
