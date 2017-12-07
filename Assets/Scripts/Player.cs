@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerSetup))]
 public class Player : NetworkBehaviour {
@@ -18,6 +19,8 @@ public class Player : NetworkBehaviour {
 
     [SyncVar]
     private int currentHealth;
+
+    public Slider healthBar;
 
 	[SerializeField]
 	private Behaviour[] disableOnDeath;
@@ -69,16 +72,26 @@ public class Player : NetworkBehaviour {
 		SetDefaults();
 	}
 
-	//void Update()
-	//{
-	//	if (!isLocalPlayer)
-	//		return;
+    private void Start()
+    {
+        GameObject hb = GameObject.FindWithTag("HealthBar");
 
-	//	if (Input.GetKeyDown(KeyCode.K))
-	//	{
-	//		RpcTakeDamage(99999);
-	//	}
-	//}
+        healthBar = hb.GetComponent<Slider>();
+        healthBar.value = CalculateHealth();
+    }
+
+    void Update()
+	{
+		/*if (!isLocalPlayer)
+			return;
+
+		if (Input.GetKeyDown(KeyCode.K))
+		{
+			RpcTakeDamage(99999);
+		}
+        */
+
+	}
 
 	[ClientRpc]
     public void RpcTakeDamage (int _amount)
@@ -87,6 +100,7 @@ public class Player : NetworkBehaviour {
 			return;
 
         currentHealth -= _amount;
+        healthBar.value = CalculateHealth();
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -94,6 +108,11 @@ public class Player : NetworkBehaviour {
 		{
 			Die();
 		}
+    }
+
+    float CalculateHealth()
+    {
+        return currentHealth / maxHealth;
     }
 
 	private void Die()

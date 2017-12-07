@@ -37,7 +37,9 @@ public class PlayerShoot : NetworkBehaviour {
 		{
 			if (Input.GetButtonDown("Fire1"))
 			{
-				Shoot();
+                Debug.Log("shoot got called");
+                Shoot();
+                
 			}
 		} else
 		{
