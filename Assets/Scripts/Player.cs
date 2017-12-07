@@ -20,7 +20,9 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     private int currentHealth;
 
+    /*
     public Slider healthBar;
+    */
 
 	[SerializeField]
 	private Behaviour[] disableOnDeath;
@@ -39,7 +41,13 @@ public class Player : NetworkBehaviour {
 
 	public void SetupPlayer ()
     {
-		if (isLocalPlayer)
+        /*sets up health 
+        GameObject hb = GameObject.FindWithTag("HealthBar");
+        healthBar = hb.GetComponent<Slider>();
+        healthBar.value = 1;
+        */
+
+        if (isLocalPlayer)
 		{
 			//Switch cameras
 			GameManager.instance.SetSceneCameraActive(false);
@@ -60,7 +68,8 @@ public class Player : NetworkBehaviour {
 	{
 		if (firstSetup)
 		{
-			wasEnabled = new bool[disableOnDeath.Length];
+           
+            wasEnabled = new bool[disableOnDeath.Length];
 			for (int i = 0; i < wasEnabled.Length; i++)
 			{
 				wasEnabled[i] = disableOnDeath[i].enabled;
@@ -72,13 +81,6 @@ public class Player : NetworkBehaviour {
 		SetDefaults();
 	}
 
-    private void Start()
-    {
-        GameObject hb = GameObject.FindWithTag("HealthBar");
-
-        healthBar = hb.GetComponent<Slider>();
-        healthBar.value = CalculateHealth();
-    }
 
     void Update()
 	{
@@ -100,7 +102,7 @@ public class Player : NetworkBehaviour {
 			return;
 
         currentHealth -= _amount;
-        healthBar.value = CalculateHealth();
+        //healthBar.value = CalculateHealth();
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
