@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454064, guid: a965339ebb973154a87a20486afe7a2c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8.353366
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 454064, guid: a965339ebb973154a87a20486afe7a2c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -148,7 +148,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 13559400, guid: a965339ebb973154a87a20486afe7a2c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a965339ebb973154a87a20486afe7a2c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &145075823
@@ -332,6 +333,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4432169709668316, guid: 4de4e7acaaadcb040bcad4edfaada051,
     type: 2}
   m_PrefabInternal: {fileID: 1794436861}
+--- !u!1 &411233542 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1846033807659124, guid: a965339ebb973154a87a20486afe7a2c,
+    type: 2}
+  m_PrefabInternal: {fileID: 4323275}
+--- !u!136 &411233543
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 411233542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.1637778
+  m_Height: 12.5497
+  m_Direction: 2
+  m_Center: {x: -0.05813861, y: 3.345584, z: -3.9267855}
 --- !u!1 &564882433
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,12 +743,12 @@ Prefab:
     - target: {fileID: 224762310438052718, guid: b135717c33bc8f64e8f5fc0953c22a7c,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.525
       objectReference: {fileID: 0}
     - target: {fileID: 224762310438052718, guid: b135717c33bc8f64e8f5fc0953c22a7c,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114224959889123036, guid: b135717c33bc8f64e8f5fc0953c22a7c,
         type: 2}
