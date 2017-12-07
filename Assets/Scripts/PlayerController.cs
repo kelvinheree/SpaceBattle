@@ -5,10 +5,13 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField]
 	private float speed = 5f;
+
 	[SerializeField]
 	private float lookSensitivity = 3f;
     [SerializeField]
     private float shipRotateSpeed = 1f;
+	[SerializeField]
+	private float brakeSpeed=1f;
 
 
 	[SerializeField]
@@ -37,6 +40,17 @@ public class PlayerController : MonoBehaviour {
     public GameObject Missile;
     public GameObject ShotSpawn;
 
+
+	//Vince's Garbage
+	private bool boostBool;
+	private float boostFloat;
+	private float _boost;
+	Vector3 pos;
+	Vector3 lastPos;
+	Vector3 veloSub = Vector3.zero;
+	Vector3 relaVelo;
+	Vector3 brakeVec;
+
     void Start ()
 	{
 		motor = GetComponent<PlayerMotor>();
@@ -45,6 +59,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
+		
+
 		if (PauseMenu.IsOn)
 			return;
 
@@ -62,7 +78,14 @@ public class PlayerController : MonoBehaviour {
         //}
 
         //calc forward velocity
-        float _boost = Input.GetAxisRaw("Accelerate");
+
+		if (Input.GetKey (KeyCode.W)) {
+			_boost = 1f;
+		} else {
+			_boost= 0f;
+		}
+
+//        float _boost = Input.GetAxisRaw("Accelerate");
 
         Vector3 _boostVector = transform.forward * _boost;
 
@@ -71,6 +94,21 @@ public class PlayerController : MonoBehaviour {
 
         //apply movement
         motor.Move(_velocity);
+
+		//braking
+		pos = transform.position;
+		veloSub = pos - lastPos;
+		lastPos = pos;
+		relaVelo = rb.velocity - veloSub;
+
+		if (Input.GetKey ("space")) {
+			Vector3  vec= -relaVelo;
+			brakeVec = vec * brakeSpeed;
+		} else {
+			brakeVec = Vector3.zero;
+		}
+
+		motor.Brake (brakeVec);
 
         //calc rotation as a 3D vector (turning around)
         float _yRot = Input.GetAxisRaw("Mouse X");
@@ -102,6 +140,8 @@ public class PlayerController : MonoBehaviour {
             transform.Rotate(0f, 0f, shipRotateSpeed);
         }
 
+
+
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
 		if (Input.GetButton ("Fire2") && thrusterFuelAmount > 0f)
@@ -120,7 +160,7 @@ public class PlayerController : MonoBehaviour {
 		thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
 
 		// Apply the thruster force
-		motor.ApplyThruster(_thrusterForce);
+//		motor.ApplyThruster(_thrusterForce);
 
         //fires missles if the player has them
         if (Input.GetMouseButtonDown(1) && missiles)

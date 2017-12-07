@@ -7,6 +7,7 @@ public class PlayerMotor : MonoBehaviour {
 	private Camera cam;
 
 	private Vector3 velocity = Vector3.zero;
+	private Vector3 brake = Vector3.zero;
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 thrusterForce = Vector3.zero;
 
@@ -27,6 +28,13 @@ public class PlayerMotor : MonoBehaviour {
         
 	}
 
+	public void Brake (Vector3 _brake)
+	{
+		brake = _brake;
+
+	}
+
+
 	// Gets a rotational vector
 	public void Rotate(Vector3 _rotation)
 	{
@@ -43,6 +51,10 @@ public class PlayerMotor : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		PerformMovement();
+
+		PerformBrake ();
+		
+
 		PerformRotation();
 	}
 
@@ -51,13 +63,19 @@ public class PlayerMotor : MonoBehaviour {
     {
         if (velocity != Vector3.zero)
         {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+//            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+			rb.AddForce( velocity * Time.deltaTime);
         }
-        if (thrusterForce != Vector3.zero)
-        {
-            rb.AddForce(thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
-        }
+
+//        if (thrusterForce != Vector3.zero)
+//        {
+//			rb.AddForce(thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+//        }
     }
+
+	void PerformBrake(){
+		rb.AddForce (brake*Time.deltaTime);
+	}
 
     void PerformRotation()
     {
