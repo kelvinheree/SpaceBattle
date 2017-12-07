@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerSetup))]
 public class Player : NetworkBehaviour {
@@ -19,6 +20,10 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     private int currentHealth;
 
+    /*
+    public Slider healthBar;
+    */
+
 	[SerializeField]
 	private Behaviour[] disableOnDeath;
 	private bool[] wasEnabled;
@@ -36,7 +41,13 @@ public class Player : NetworkBehaviour {
 
 	public void SetupPlayer ()
     {
-		if (isLocalPlayer)
+        /*sets up health 
+        GameObject hb = GameObject.FindWithTag("HealthBar");
+        healthBar = hb.GetComponent<Slider>();
+        healthBar.value = 1;
+        */
+
+        if (isLocalPlayer)
 		{
 			//Switch cameras
 			GameManager.instance.SetSceneCameraActive(false);
@@ -57,7 +68,8 @@ public class Player : NetworkBehaviour {
 	{
 		if (firstSetup)
 		{
-			wasEnabled = new bool[disableOnDeath.Length];
+           
+            wasEnabled = new bool[disableOnDeath.Length];
 			for (int i = 0; i < wasEnabled.Length; i++)
 			{
 				wasEnabled[i] = disableOnDeath[i].enabled;
@@ -69,16 +81,19 @@ public class Player : NetworkBehaviour {
 		SetDefaults();
 	}
 
-	//void Update()
-	//{
-	//	if (!isLocalPlayer)
-	//		return;
 
-	//	if (Input.GetKeyDown(KeyCode.K))
-	//	{
-	//		RpcTakeDamage(99999);
-	//	}
-	//}
+    void Update()
+	{
+		/*if (!isLocalPlayer)
+			return;
+
+		if (Input.GetKeyDown(KeyCode.K))
+		{
+			RpcTakeDamage(99999);
+		}
+        */
+
+	}
 
 	[ClientRpc]
     public void RpcTakeDamage (int _amount)
@@ -87,6 +102,7 @@ public class Player : NetworkBehaviour {
 			return;
 
         currentHealth -= _amount;
+        //healthBar.value = CalculateHealth();
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -94,6 +110,11 @@ public class Player : NetworkBehaviour {
 		{
 			Die();
 		}
+    }
+
+    float CalculateHealth()
+    {
+        return currentHealth / maxHealth;
     }
 
 	private void Die()
