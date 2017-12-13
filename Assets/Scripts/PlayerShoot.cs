@@ -15,7 +15,10 @@ public class PlayerShoot : NetworkBehaviour {
 	private PlayerWeapon currentWeapon;
 	private WeaponManager weaponManager;
 
-//	private LineRenderer gunLine;
+	public GameObject gunLineOb;
+	LineRenderer gunLine;
+	Ray shootRay;
+
 	void Start ()
 	{
 		if (cam == null)
@@ -26,13 +29,14 @@ public class PlayerShoot : NetworkBehaviour {
 
 		weaponManager = GetComponent<WeaponManager>();
 
-//		gunLine = GetComponentInChildren<LineRenderer> ();
+		gunLine = gunLineOb.GetComponent<LineRenderer> ();
 
 
 	}
 
 	void Update ()
 	{
+
 		currentWeapon = weaponManager.GetCurrentWeapon();
 
 		if (PauseMenu.IsOn)
@@ -42,7 +46,8 @@ public class PlayerShoot : NetworkBehaviour {
 		{
 			if (Input.GetButtonDown("Fire1"))
 			{
-                Debug.Log("shoot got called");
+				
+//                Debug.Log("shoot got called");
                 Shoot();
                 
 			}
@@ -51,10 +56,17 @@ public class PlayerShoot : NetworkBehaviour {
 			if (Input.GetButtonDown("Fire1"))
 			{
 				InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
+				Debug.Log("shoot got called");
+				gunLine.enabled = true;
 			} else if (Input.GetButtonUp ("Fire1"))
 			{
 				CancelInvoke("Shoot");
 			}
+		}
+
+
+		if(Input.GetButtonUp("Fire1")){
+			gunLine.enabled = false;
 		}
 	}
 
@@ -62,6 +74,7 @@ public class PlayerShoot : NetworkBehaviour {
 	[Command]
 	void CmdOnShoot ()
 	{
+		
 		RpcDoShootEffect();
     }
 
@@ -71,6 +84,39 @@ public class PlayerShoot : NetworkBehaviour {
 	void RpcDoShootEffect ()
 	{
 		weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+
+
+		//Inserted ray cast code
+
+		if (Input.GetButtonDown("Fire1"))
+		{
+			gunLine.enabled = true;
+		}
+
+
+		gunLine.SetPosition (0, gunLineOb.transform.position);
+		shootRay.origin = gunLineOb.transform.position;
+		shootRay.direction = gunLineOb.transform.forward;
+
+		RaycastHit _hit;
+		if (Physics.Raycast (/*cam.transform.position, cam.transform.forward,*/ shootRay ,out _hit, currentWeapon.range, mask)) {
+			
+
+		
+
+
+			gunLine.SetPosition (1, _hit.point);
+
+		} else {
+			gunLine.SetPosition (1, shootRay.origin + shootRay.direction*currentWeapon.range);
+		}
+
+
+
+
+		if(Input.GetButtonUp("Fire1")){
+			gunLine.enabled = false;
+		}
 	}
 
 	//Is called on the server when we hit something
@@ -94,7 +140,9 @@ public class PlayerShoot : NetworkBehaviour {
 	void Shoot ()
 	{
 //		gunLine.enabled = true;
-//		gunLine.SetPosition (0, transform.position);
+//		gunLine.SetPosition (0, gunLineOb.transform.position);
+//		shootRay.origin = gunLineOb.transform.position;
+//		shootRay.direction = gunLineOb.transform.forward;
 
 		if (!isLocalPlayer)
 		{
@@ -105,16 +153,22 @@ public class PlayerShoot : NetworkBehaviour {
 		CmdOnShoot();
 
 		RaycastHit _hit;
-		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, currentWeapon.range, mask) )
-		{
-			if (_hit.collider.tag == PLAYER_TAG)
-			{
-				CmdPlayerShot(_hit.collider.name, currentWeapon.damage);
+		if (Physics.Raycast (/*cam.transform.position, cam.transform.forward,*/ shootRay ,out _hit, currentWeapon.range, mask)) {
+			if (_hit.collider.tag == PLAYER_TAG) {
+				CmdPlayerShot (_hit.collider.name, currentWeapon.damage);
 			}
 
 			// We hit something, call the OnHit method on the server
-			CmdOnHit(_hit.point, _hit.normal);
+			CmdOnHit (_hit.point, _hit.normal);
+
+//			gunLine.SetPosition (1, _hit.point);
+
+		} else {
+//			gunLine.SetPosition (1, shootRay.origin + shootRay.direction*currentWeapon.range);
 		}
+
+
+
 
 	}
 
