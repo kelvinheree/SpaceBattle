@@ -41,11 +41,11 @@ public class Player : NetworkBehaviour {
 
 	public void SetupPlayer ()
     {
-        /*sets up health 
+        //sets up health 
         GameObject hb = GameObject.FindWithTag("HealthBar");
         healthBar = hb.GetComponent<Slider>();
         healthBar.value = 1;
-        */
+        
 
         if (isLocalPlayer)
 		{
@@ -86,12 +86,8 @@ public class Player : NetworkBehaviour {
 	{
 		/*if (!isLocalPlayer)
 			return;
-
-		if (Input.GetKeyDown(KeyCode.K))
-		{
-			RpcTakeDamage(99999);
-		}
         */
+       
 
 	}
 
@@ -102,7 +98,7 @@ public class Player : NetworkBehaviour {
 			return;
 
         currentHealth -= _amount;
-        //healthBar.value = CalculateHealth();
+        healthBar.value = CalculateHealth();
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
