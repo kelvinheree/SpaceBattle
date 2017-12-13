@@ -57,25 +57,19 @@ public class PlayerShoot : NetworkBehaviour {
 			{
 				InvokeRepeating("Shoot", 0f, 1f/currentWeapon.fireRate);
 				Debug.Log("shoot got called");
-				gunLine.enabled = true;
 			} else if (Input.GetButtonUp ("Fire1"))
 			{
 				CancelInvoke("Shoot");
 			}
 		}
 
-
-		if(Input.GetButtonUp("Fire1")){
-			gunLine.enabled = false;
-		}
 	}
 
 	//Is called on the server when a player shoots
 	[Command]
 	void CmdOnShoot ()
 	{
-		
-		RpcDoShootEffect();
+            RpcDoShootEffect();
     }
 
 	//Is called on all clients when we need to to
