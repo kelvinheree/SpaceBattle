@@ -64,7 +64,7 @@ public class PlayerMotor : MonoBehaviour {
         if (velocity != Vector3.zero)
         {
 //            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-			rb.AddForce( velocity * Time.deltaTime);
+			rb.AddForce( velocity * Time.deltaTime,ForceMode.VelocityChange);
         }
 
 //        if (thrusterForce != Vector3.zero)

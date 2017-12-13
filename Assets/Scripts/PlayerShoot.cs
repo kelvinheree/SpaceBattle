@@ -15,6 +15,7 @@ public class PlayerShoot : NetworkBehaviour {
 	private PlayerWeapon currentWeapon;
 	private WeaponManager weaponManager;
 
+//	private LineRenderer gunLine;
 	void Start ()
 	{
 		if (cam == null)
@@ -24,6 +25,10 @@ public class PlayerShoot : NetworkBehaviour {
 		}
 
 		weaponManager = GetComponent<WeaponManager>();
+
+//		gunLine = GetComponentInChildren<LineRenderer> ();
+
+
 	}
 
 	void Update ()
@@ -88,6 +93,9 @@ public class PlayerShoot : NetworkBehaviour {
 	[Client]
 	void Shoot ()
 	{
+//		gunLine.enabled = true;
+//		gunLine.SetPosition (0, transform.position);
+
 		if (!isLocalPlayer)
 		{
 			return;
