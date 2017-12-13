@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.W)) {
 			_boost = 1f;
+		} else if (Input.GetKey (KeyCode.S)) {
+			_boost = -1f;
 		} else {
 			_boost= 0f;
 		}
@@ -130,12 +132,12 @@ public class PlayerController : MonoBehaviour {
         //}
 
 
-        if (Input.GetKey(KeyCode.E))
+		if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(0f, 0f, -shipRotateSpeed);
         }
 
-        if (Input.GetKey(KeyCode.Q))
+		if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(0f, 0f, shipRotateSpeed);
         }

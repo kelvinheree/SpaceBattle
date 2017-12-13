@@ -13,11 +13,20 @@ public class Destruction : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+		if (col.gameObject.tag == "Player")
         {
             Instantiate(destroyedVersion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+
+
+		if (col.gameObject.tag== "Missile")
+		{
+			Instantiate(destroyedVersion, transform.position, transform.rotation);
+			Destroy(gameObject);
+			Destroy(col.gameObject);
+		}
+
 
     }
 

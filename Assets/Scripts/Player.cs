@@ -20,9 +20,9 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     private int currentHealth;
 
-    /*
+    
     public Slider healthBar;
-    */
+
 
 	[SerializeField]
 	private Behaviour[] disableOnDeath;
