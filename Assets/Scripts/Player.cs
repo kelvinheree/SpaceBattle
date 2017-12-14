@@ -44,8 +44,12 @@ public class Player : NetworkBehaviour {
         //sets up health 
  
         GameObject hb = GameObject.FindWithTag("HealthBar");
-        healthBar = hb.GetComponent<Slider>();
-        healthBar.value = 1000;
+        Debug.Log(hb);
+        if (hb != null)
+        {
+            healthBar = hb.GetComponent<Slider>();
+            healthBar.value = 1000;
+        }
         
 
         if (isLocalPlayer)
@@ -94,10 +98,10 @@ public class Player : NetworkBehaviour {
         }
 
        //Speed ui calculation
-        float speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-        string speedString = speed.ToString("F2");
-        GameObject speedText = GameObject.FindWithTag("Speed");
-        speedText.GetComponent<Text>().text = "Speed: " + speedString;
+        //float speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        //string speedString = speed.ToString("F2");
+        //GameObject speedText = GameObject.FindWithTag("Speed");
+        //speedText.GetComponent<Text>().text = "Speed: " + speedString;
 
     }
 

@@ -162,12 +162,24 @@ public class PlayerController : MonoBehaviour {
 
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-		
+        if (Input.GetKeyDown(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
+        {
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
 
-		thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
+            if (thrusterFuelAmount >= 0.01f)
+            {
+                _thrusterForce = transform.forward * thrusterForce;
+            }
+        }
+        else
+        {
+            thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
+        }
 
-		// Apply the thruster force
-//		motor.ApplyThruster(_thrusterForce);
+        thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
+
+        // Apply the thruster force
+        motor.ApplyThruster(_thrusterForce);
 
         //fires missles if the player has them
         if (Input.GetMouseButtonDown(1) && missiles)

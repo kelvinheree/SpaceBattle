@@ -67,10 +67,10 @@ public class PlayerMotor : MonoBehaviour {
 			rb.AddForce( velocity * Time.deltaTime,ForceMode.VelocityChange);
         }
 
-//        if (thrusterForce != Vector3.zero)
-//        {
-//			rb.AddForce(thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
-//        }
+        if (thrusterForce != Vector3.zero)
+        {
+			rb.AddForce(thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+        }
     }
 
 	void PerformBrake(){
