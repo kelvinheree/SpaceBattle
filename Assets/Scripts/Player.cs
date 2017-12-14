@@ -39,12 +39,15 @@ public class Player : NetworkBehaviour {
 
 	private bool firstSetup = true;
 
-	public void SetupPlayer ()
+    public void SetupPlayer()
     {
         //sets up health 
-        GameObject hb = GameObject.FindWithTag("HealthBar");
-        healthBar = hb.GetComponent<Slider>();
-        healthBar.value = 1;
+        if (healthBar != null)
+        { 
+            GameObject hb = GameObject.FindWithTag("HealthBar");
+            healthBar = hb.GetComponent<Slider>();
+            healthBar.value = 1;
+        }
         
 
         if (isLocalPlayer)
