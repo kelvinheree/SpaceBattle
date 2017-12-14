@@ -6,20 +6,23 @@ using UnityEngine.UI;
 public class Spedometer : MonoBehaviour
 {
 
-    Text text;
-    float speed;
+    public Text text;
+    public float speed;
 
     // Use this for initialization
     void Start()
     {
-        text = GetComponent<Text>();
+        text = GameObject.Find("Speed").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //speed = GameObject.Find("Player").GetComponent<PlayerMover>().currentSpeed;
-        string speedString = speed.ToString("F2");
-        text.text = "Speed: " + speedString;
+        if (GameObject.Find("Player 1") != null)
+        {
+            speed = GameObject.Find("Player 1").GetComponent<Rigidbody>().velocity.magnitude;
+            string speedString = speed.ToString("F2");
+            text.text = "Speed: " + speedString;
+        }
     }
 }
