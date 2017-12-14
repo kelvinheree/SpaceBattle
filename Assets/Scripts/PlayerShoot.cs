@@ -62,8 +62,12 @@ public class PlayerShoot : NetworkBehaviour {
 				CancelInvoke("Shoot");
 			}
 		}
+        if (Input.GetButtonUp("Fire1"))
+        {
+            gunLine.enabled = false;
+        }
 
-	}
+    }
 
 	//Is called on the server when a player shoots
 	[Command]
@@ -93,7 +97,7 @@ public class PlayerShoot : NetworkBehaviour {
 		shootRay.direction = gunLineOb.transform.forward;
 
 		RaycastHit _hit;
-		if (Physics.Raycast (/*cam.transform.position, cam.transform.forward,*/ shootRay ,out _hit, currentWeapon.range, mask)) {
+		if (Physics.Raycast (cam.transform.position, cam.transform.forward ,out _hit, currentWeapon.range, mask)) {
 			
 
 		
@@ -108,9 +112,9 @@ public class PlayerShoot : NetworkBehaviour {
 
 
 
-		if(Input.GetButtonUp("Fire1")){
+		/*if(Input.GetButtonUp("Fire1")){
 			gunLine.enabled = false;
-		}
+		}*/
 	}
 
 	//Is called on the server when we hit something

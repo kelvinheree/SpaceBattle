@@ -11,6 +11,21 @@ public class MissleSpeed : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		rb.velocity = transform.forward * speed;
 	}
-	
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.tag == "Player")
+        {
+            string _playerID = collider.name;
+            Debug.Log(_playerID + " has been shot.");
+
+            Player _player = GameManager.GetPlayer(_playerID);
+            _player.RpcTakeDamage(20);
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 }
