@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	Vector3 veloSub = Vector3.zero;
 	Vector3 relaVelo;
 	Vector3 brakeVec;
+    public float boostSpeed= 1.5f;
 
     void Start ()
 	{
@@ -90,11 +91,22 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			_boost= 0f;
 		}
-         
-//        float _boost = Input.GetAxisRaw("Accelerate");
+
+        if (Input.GetKey(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
+        {
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
+            speed += boostSpeed;
+            
+
+        }
+        else
+        {
+            thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
+        }
+        //        float _boost = Input.GetAxisRaw("Accelerate");
 
         Vector3 _boostVector = transform.forward * _boost;
-
+           
         //final movement vector
         Vector3 _velocity = (_boostVector).normalized * speed;
 
@@ -150,18 +162,7 @@ public class PlayerController : MonoBehaviour {
 
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-		if (Input.GetKey(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
-		{
-			thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
-
-			if (thrusterFuelAmount >= 0.01f)
-			{
-				_thrusterForce = Vector3.up * thrusterForce;
-			}
-		} else
-		{
-			thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
-		}
+		
 
 		thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
 

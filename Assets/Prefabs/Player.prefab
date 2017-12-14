@@ -342,6 +342,7 @@ MonoBehaviour:
   Missile: {fileID: 1810185226424338, guid: 2caab8e50ff32cc4c8bd7f0f66e71311, type: 2}
   ShotSpawn: {fileID: 1507738153059940}
   inZone: 1
+  boostSpeed: 1.5
 --- !u!114 &11450446
 MonoBehaviour:
   m_ObjectHideFlags: 1
