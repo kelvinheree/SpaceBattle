@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject Missile;
     public GameObject ShotSpawn;
 
+    //Zone stuff
+    public bool inZone = true;
+    private int zoneCounter = 0;
 
 	//Vince's Garbage
 	private bool boostBool;
@@ -170,6 +173,16 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation);
         }
 
+        if (!inZone)
+        {
+            Player _player = GameManager.GetPlayer(gameObject.name);
+            zoneCounter++;
+            if (zoneCounter == 10) {
+                _player.RpcTakeDamage(1);
+                zoneCounter = 0;
+            }
+        }
+
     }
 
     void OnTriggerEnter(Collider collider)
@@ -184,6 +197,18 @@ public class PlayerController : MonoBehaviour {
         {
             missiles = true;
             Destroy(collider.gameObject);
+        }
+        if (collider.tag == "Boundary")
+        {
+            inZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.tag == "Boundary")
+        {
+            inZone = false;
         }
     }
 }

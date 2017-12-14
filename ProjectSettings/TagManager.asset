@@ -8,6 +8,7 @@ TagManager:
   - Missile
   - UI
   - HealthBar
+  - Boundary
   layers:
   - Default
   - TransparentFX
