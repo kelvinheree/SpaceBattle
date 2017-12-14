@@ -147,7 +147,7 @@ public class PlayerShoot : NetworkBehaviour {
 		CmdOnShoot();
 
 		RaycastHit _hit;
-		if (Physics.Raycast (/*cam.transform.position, cam.transform.forward,*/ shootRay ,out _hit, currentWeapon.range, mask)) {
+		if (Physics.Raycast (cam.transform.position, cam.transform.forward, out _hit, currentWeapon.range, mask)) {
 			if (_hit.collider.tag == PLAYER_TAG) {
 				CmdPlayerShot (_hit.collider.name, currentWeapon.damage);
 			}
