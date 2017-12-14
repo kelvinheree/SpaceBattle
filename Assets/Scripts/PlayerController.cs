@@ -176,12 +176,8 @@ public class PlayerController : MonoBehaviour {
 
         if (!inZone)
         {
-            zoneCounter++;
-            if (zoneCounter == 10) {
-                Player _player = GameManager.GetPlayer(gameObject.name);
-                _player.RpcTakeDamage(1);
-                zoneCounter = 0;
-            }
+            Player _player = GameManager.GetPlayer(gameObject.name);
+            _player.RpcTakeDamage(1);
         }
 
     }
