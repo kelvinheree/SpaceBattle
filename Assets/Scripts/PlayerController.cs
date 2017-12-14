@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour {
 
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-		if (Input.GetButton ("Fire2") && thrusterFuelAmount > 0f)
+		if (Input.GetKey(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
 		{
 			thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
 
