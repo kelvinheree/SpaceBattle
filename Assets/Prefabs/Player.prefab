@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba6b6c515fdc6c49b8d58ab912e83b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   healthBar: {fileID: 0}
   disableOnDeath:
   - {fileID: 11433214}
@@ -341,6 +341,7 @@ MonoBehaviour:
   missiles: 1
   Missile: {fileID: 1810185226424338, guid: 2caab8e50ff32cc4c8bd7f0f66e71311, type: 2}
   ShotSpawn: {fileID: 1507738153059940}
+  inZone: 1
 --- !u!114 &11450446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,7 +357,7 @@ MonoBehaviour:
   weaponHolder: {fileID: 470462}
   primaryWeapon:
     name: Blaster
-    damage: 5
+    damage: 3
     range: 100
     fireRate: 120
     graphics: {fileID: 199728, guid: ed705c92b28f65f4f99f5b76f9f51ecc, type: 2}

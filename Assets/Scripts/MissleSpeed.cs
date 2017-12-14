@@ -12,7 +12,7 @@ public class MissleSpeed : MonoBehaviour {
 		rb.velocity = transform.forward * speed;
 	}
 
-    private void OnTriggerEnter(Collider collider)
+    /*private void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "Player")
         {
@@ -23,9 +23,9 @@ public class MissleSpeed : MonoBehaviour {
             _player.RpcTakeDamage(20);
         } else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
-    }
+    }*/
 
 
 }

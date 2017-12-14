@@ -15,7 +15,7 @@ public class Player : NetworkBehaviour {
 	}
 
     [SerializeField]
-    private int maxHealth = 100;
+    private int maxHealth = 1000;
 
     [SyncVar]
     private int currentHealth;
@@ -45,7 +45,7 @@ public class Player : NetworkBehaviour {
  
         GameObject hb = GameObject.FindWithTag("HealthBar");
         healthBar = hb.GetComponent<Slider>();
-        healthBar.value = 100;
+        healthBar.value = 1000;
         
 
         if (isLocalPlayer)
@@ -91,9 +91,15 @@ public class Player : NetworkBehaviour {
        if(Input.GetKeyDown(KeyCode.K))
        {
             RpcTakeDamage(10);
-       }
+        }
 
-	}
+       //Speed ui calculation
+        float speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        string speedString = speed.ToString("F2");
+        GameObject speedText = GameObject.FindWithTag("Speed");
+        speedText.GetComponent<Text>().text = "Speed: " + speedString;
+
+    }
 
 	[ClientRpc]
     public void RpcTakeDamage (int _amount)

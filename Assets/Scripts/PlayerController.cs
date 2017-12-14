@@ -43,9 +43,10 @@ public class PlayerController : MonoBehaviour {
     //Zone stuff
     public bool inZone = true;
     private int zoneCounter = 0;
+    
 
-	//Vince's Garbage
-	private bool boostBool;
+    //Vince's Garbage
+    private bool boostBool;
 	private float boostFloat;
 	private float _boost;
 	Vector3 pos;
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			_boost= 0f;
 		}
-
+         
 //        float _boost = Input.GetAxisRaw("Accelerate");
 
         Vector3 _boostVector = transform.forward * _boost;
@@ -175,9 +176,9 @@ public class PlayerController : MonoBehaviour {
 
         if (!inZone)
         {
-            Player _player = GameManager.GetPlayer(gameObject.name);
             zoneCounter++;
             if (zoneCounter == 10) {
+                Player _player = GameManager.GetPlayer(gameObject.name);
                 _player.RpcTakeDamage(1);
                 zoneCounter = 0;
             }
@@ -195,8 +196,10 @@ public class PlayerController : MonoBehaviour {
 
         if (collider.tag == "Missile")
         {
-            missiles = true;
-            Destroy(collider.gameObject);
+            Player _player = GameManager.GetPlayer(gameObject.name);
+            _player.RpcTakeDamage(100);
+           // missiles = true;
+           Destroy(collider.gameObject);
         }
         if (collider.tag == "Boundary")
         {

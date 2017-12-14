@@ -9,6 +9,8 @@ TagManager:
   - UI
   - HealthBar
   - Boundary
+  - Undefined
+  - Speed
   layers:
   - Default
   - TransparentFX
