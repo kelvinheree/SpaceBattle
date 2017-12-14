@@ -15,7 +15,7 @@ public class Player : NetworkBehaviour {
 	}
 
     [SerializeField]
-    private int maxHealth = 100;
+    private int maxHealth = 1000;
 
     [SyncVar]
     private int currentHealth;
@@ -42,12 +42,10 @@ public class Player : NetworkBehaviour {
     public void SetupPlayer()
     {
         //sets up health 
-        if (healthBar != null)
-        { 
-            GameObject hb = GameObject.FindWithTag("HealthBar");
-            healthBar = hb.GetComponent<Slider>();
-            healthBar.value = 1;
-        }
+ 
+        GameObject hb = GameObject.FindWithTag("HealthBar");
+        healthBar = hb.GetComponent<Slider>();
+        healthBar.value = 1000;
         
 
         if (isLocalPlayer)
@@ -90,9 +88,18 @@ public class Player : NetworkBehaviour {
 		/*if (!isLocalPlayer)
 			return;
         */
-       
+       if(Input.GetKeyDown(KeyCode.K))
+       {
+            RpcTakeDamage(10);
+        }
 
-	}
+       //Speed ui calculation
+        float speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        string speedString = speed.ToString("F2");
+        GameObject speedText = GameObject.FindWithTag("Speed");
+        speedText.GetComponent<Text>().text = "Speed: " + speedString;
+
+    }
 
 	[ClientRpc]
     public void RpcTakeDamage (int _amount)
@@ -101,7 +108,7 @@ public class Player : NetworkBehaviour {
 			return;
 
         currentHealth -= _amount;
-        healthBar.value = CalculateHealth();
+        healthBar.value = currentHealth;
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -109,11 +116,6 @@ public class Player : NetworkBehaviour {
 		{
 			Die();
 		}
-    }
-
-    float CalculateHealth()
-    {
-        return currentHealth / maxHealth;
     }
 
 	private void Die()

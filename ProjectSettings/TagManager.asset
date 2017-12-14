@@ -8,6 +8,9 @@ TagManager:
   - Missile
   - UI
   - HealthBar
+  - Boundary
+  - Undefined
+  - Speed
   layers:
   - Default
   - TransparentFX

@@ -20,9 +20,12 @@ public class Spedometer : MonoBehaviour
     {
         if (GameObject.Find("Player 1") != null)
         {
+            //gameObject.name;
+            /*
             speed = GameObject.Find("Player 1").GetComponent<Rigidbody>().velocity.magnitude;
             string speedString = speed.ToString("F2");
             text.text = "Speed: " + speedString;
+            */
         }
     }
 }

@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour {
     public GameObject Missile;
     public GameObject ShotSpawn;
 
+    //Zone stuff
+    public bool inZone = true;
+    private int zoneCounter = 0;
+    
 
-	//Vince's Garbage
-	private bool boostBool;
+    //Vince's Garbage
+    private bool boostBool;
 	private float boostFloat;
 	private float _boost;
 	Vector3 pos;
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	Vector3 veloSub = Vector3.zero;
 	Vector3 relaVelo;
 	Vector3 brakeVec;
+    public float boostSpeed= 1.5f;
 
     void Start ()
 	{
@@ -87,10 +92,21 @@ public class PlayerController : MonoBehaviour {
 			_boost= 0f;
 		}
 
-//        float _boost = Input.GetAxisRaw("Accelerate");
+        if (Input.GetKey(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
+        {
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
+            speed += boostSpeed;
+            
+
+        }
+        else
+        {
+            thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
+        }
+        //        float _boost = Input.GetAxisRaw("Accelerate");
 
         Vector3 _boostVector = transform.forward * _boost;
-
+           
         //final movement vector
         Vector3 _velocity = (_boostVector).normalized * speed;
 
@@ -146,18 +162,7 @@ public class PlayerController : MonoBehaviour {
 
         // Calculate the thrusterforce based on player input
         Vector3 _thrusterForce = Vector3.zero;
-		if (Input.GetKey(KeyCode.LeftShift) && thrusterFuelAmount > 0f)
-		{
-			thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
-
-			if (thrusterFuelAmount >= 0.01f)
-			{
-				_thrusterForce = Vector3.up * thrusterForce;
-			}
-		} else
-		{
-			thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
-		}
+		
 
 		thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
 
@@ -168,6 +173,12 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButtonDown(1) && missiles)
         {
             Instantiate(Missile, ShotSpawn.transform.position, ShotSpawn.transform.rotation);
+        }
+
+        if (!inZone)
+        {
+            Player _player = GameManager.GetPlayer(gameObject.name);
+            _player.RpcTakeDamage(1);
         }
 
     }
@@ -182,8 +193,22 @@ public class PlayerController : MonoBehaviour {
 
         if (collider.tag == "Missile")
         {
-            missiles = true;
-            Destroy(collider.gameObject);
+            Player _player = GameManager.GetPlayer(gameObject.name);
+            _player.RpcTakeDamage(100);
+           // missiles = true;
+           Destroy(collider.gameObject);
+        }
+        if (collider.tag == "Boundary")
+        {
+            inZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.tag == "Boundary")
+        {
+            inZone = false;
         }
     }
 }
